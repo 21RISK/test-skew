@@ -20,6 +20,15 @@
 
 		Version 2
 	</h1>
+	<form method="POST">
+		<label>
+			Name
+			<input name="name" type="text" />
+		</label>
+		<label>
+			<button type="submit">Log in</button>
+		</label>
+	</form>
 
 	<Counter />
 </section>
