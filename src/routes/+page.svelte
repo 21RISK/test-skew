@@ -4,7 +4,7 @@
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 
 	export let form;
-	const version = '2.0';
+	const version = '2.1';
 </script>
 
 <svelte:head>
@@ -26,18 +26,19 @@
 	<form method="POST">
 		<div>
 			<label>
-				Fisrt Name (required):
+				Fisrt Name:
 				<input name="name" type="text" />
 			</label>
 		</div>
 		<hr />
-		<!-- <div>
+		<div>
 			<label>
-				Second Name:
+				Second Name (required):
 				<input name="surname" type="text" />
 			</label>
 		</div>
 		<hr />
+		<!-- 
 		<div>
 			<label>
 				Email (required):
@@ -55,14 +56,6 @@
 		<input type="hidden" name="version" value={version} />
 		<button type="submit">Submit</button>
 	</form>
-
-	<!-- {#if form?.error}
-		<p style="color: red;">{form.error}</p>
-	{/if}
-
-	{#if form?.success}
-		<p style="color: green;">{form.success}</p>
-	{/if} -->
 
 	<Counter />
 </section>
