@@ -19,7 +19,7 @@ export const actions: Actions = {
 		}
 
 		return {
-			success: `Submitted: ${name}! (App version: ${version})`
+			success: `Submitted: (App version: ${version})`
 		};
 	}
 };
