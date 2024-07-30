@@ -4,7 +4,7 @@
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 
 	export let form;
-	const version = '5';
+	const version = '6';
 </script>
 
 <svelte:head>
@@ -35,6 +35,13 @@
 			<label>
 				Second Name:
 				<input name="surname" type="text" />
+			</label>
+		</div>
+		<hr />
+		<div>
+			<label>
+				Email (required):
+				<input name="email" type="text" />
 			</label>
 		</div>
 		<hr />
