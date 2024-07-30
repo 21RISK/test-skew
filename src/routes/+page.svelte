@@ -4,7 +4,7 @@
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 
 	export let form;
-	const version = '7';
+	const version = '2.0';
 </script>
 
 <svelte:head>
@@ -31,7 +31,7 @@
 			</label>
 		</div>
 		<hr />
-		<div>
+		<!-- <div>
 			<label>
 				Second Name:
 				<input name="surname" type="text" />
@@ -51,18 +51,18 @@
 				<input name="age" type="number" />
 			</label>
 		</div>
-		<hr />
+		<hr /> -->
 		<input type="hidden" name="version" value={version} />
 		<button type="submit">Submit</button>
 	</form>
 
-	{#if form?.error}
+	<!-- {#if form?.error}
 		<p style="color: red;">{form.error}</p>
 	{/if}
 
 	{#if form?.success}
 		<p style="color: green;">{form.success}</p>
-	{/if}
+	{/if} -->
 
 	<Counter />
 </section>
