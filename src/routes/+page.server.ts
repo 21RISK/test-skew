@@ -7,6 +7,8 @@ export const actions: Actions = {
 		const surName = formData.get('surname') || '';
 		const version = formData.get('version');
 
+		console.log('form data', formData);
+
 		if (!name) {
 			return {
 				error: 'Name is required!'
