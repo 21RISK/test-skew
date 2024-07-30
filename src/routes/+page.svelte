@@ -3,7 +3,7 @@
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 
-	const version = '2.2';
+	const version = '2.3';
 </script>
 
 <svelte:head>
@@ -25,21 +25,21 @@
 	<form method="POST">
 		<div>
 			<label>
-				Fisrt Name:
+				Fisrt Name*
 				<input name="name" type="text" />
 			</label>
 		</div>
 		<hr />
 		<div>
 			<label>
-				Second Name (required):
+				Second Name*
 				<input name="surname" type="text" />
 			</label>
 		</div>
 		<hr />
 		<div>
 			<label>
-				Email (required):
+				Email*
 				<input name="email" type="text" />
 			</label>
 		</div>
@@ -47,7 +47,7 @@
 		<!-- 
 		<div>
 			<label>
-				Age (required):
+				Age*:
 				<input name="age" type="number" />
 			</label>
 		</div>
