@@ -2,6 +2,9 @@
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
+
+	export let form;
+	const version = '3';
 </script>
 
 <svelte:head>
@@ -18,17 +21,34 @@
 			</picture>
 		</span>
 
-		Version 2
+		Version: {version}
 	</h1>
 	<form method="POST">
-		<label>
-			Name
-			<input name="name" type="text" />
-		</label>
-		<label>
-			<button type="submit">Log in</button>
-		</label>
+		<div>
+			<label>
+				Fisrt Name (required):
+				<input name="name" type="text" />
+			</label>
+		</div>
+		<hr />
+		<div>
+			<label>
+				Second Name:
+				<input name="surname" type="text" />
+			</label>
+		</div>
+		<hr />
+		<input type="hidden" name="version" value={version} />
+		<button type="submit">Submit</button>
 	</form>
+
+	{#if form?.error}
+		<p style="color: red;">{form.error}</p>
+	{/if}
+
+	{#if form?.success}
+		<p style="color: green;">{form.success}</p>
+	{/if}
 
 	<Counter />
 </section>
