@@ -3,7 +3,7 @@
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 
-	const version = '2.3';
+	const version = '2.4';
 </script>
 
 <svelte:head>
@@ -44,14 +44,13 @@
 			</label>
 		</div>
 		<hr />
-		<!-- 
 		<div>
 			<label>
 				Age*:
 				<input name="age" type="number" />
 			</label>
 		</div>
-		<hr /> -->
+		<hr />
 		<input type="hidden" name="version" value={version} />
 		<button type="submit">Submit</button>
 	</form>
