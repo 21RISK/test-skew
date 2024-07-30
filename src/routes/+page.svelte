@@ -18,12 +18,8 @@
 			</picture>
 		</span>
 
-		to your new<br />SvelteKit app
+		Version 1
 	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
 
 	<Counter />
 </section>
