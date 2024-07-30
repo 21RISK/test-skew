@@ -3,8 +3,7 @@
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 
-	export let form;
-	const version = '2.1';
+	const version = '2.2';
 </script>
 
 <svelte:head>
@@ -38,7 +37,6 @@
 			</label>
 		</div>
 		<hr />
-		<!-- 
 		<div>
 			<label>
 				Email (required):
@@ -46,6 +44,7 @@
 			</label>
 		</div>
 		<hr />
+		<!-- 
 		<div>
 			<label>
 				Age (required):

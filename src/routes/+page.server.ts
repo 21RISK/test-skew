@@ -1,6 +1,6 @@
 import type { Actions } from './$types';
 
-const serverVersion = '2.1';
+const serverVersion = '2.2';
 
 export const actions: Actions = {
 	default: async ({ request }) => {
@@ -8,20 +8,14 @@ export const actions: Actions = {
 		const name = formData.get('name');
 		const version = formData.get('version');
 		const surName = formData.get('surname') || '';
-		// const email = formData.get('email');
+		const email = formData.get('email');
 		// const age = formData.get('age');
 
 		console.log(`server version: ${serverVersion}`);
 		console.log(formData);
 
-		// if (!name && !email) {
-		// 	return {
-		// 		error: 'Name / email are required!'
-		// 	};
-		// }
-
-		if (!surName) {
-			throw new Error('surname is required!');
+		if (!surName && !email) {
+			throw new Error('surname/email is required!');
 		}
 
 		return {
