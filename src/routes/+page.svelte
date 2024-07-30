@@ -4,7 +4,7 @@
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 
 	export let form;
-	const version = '4';
+	const version = '5';
 </script>
 
 <svelte:head>
