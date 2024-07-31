@@ -4,10 +4,21 @@
 	import { getContext } from 'svelte';
 	import { version } from '$app/environment';
 	import { updated } from '$app/stores';
+	import { writable } from 'svelte/store';
+	import { beforeNavigate } from '$app/navigation';
 
 	$: console.log($updated);
 
 	const clientVersion = getContext('version');
+
+	const enableRedirection = writable(false);
+
+	$: beforeNavigate(({ willUnload, to }) => {
+		// Only execute if redirection is enabled
+		if ($enableRedirection && $updated && !willUnload && to?.url) {
+			location.href = to.url.href;
+		}
+	});
 </script>
 
 <header>
@@ -15,6 +26,11 @@
 		<div>ver.{clientVersion}</div>
 		<div style="font-size: 0.8em">{version}</div>
 		<span style="font-size: 0.8em">Updated: {$updated.toString()}</span>
+
+		<label>
+			<input type="checkbox" bind:checked={$enableRedirection} />
+			Enable Redirection
+		</label>
 	</div>
 
 	<nav>
