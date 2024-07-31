@@ -2,30 +2,8 @@
 	import Header from './Header.svelte';
 	import '../app.css';
 	import { setContext } from 'svelte';
-	import { onMount } from 'svelte';
-	import { updated } from '../stores/version';
 
-	/**
-	 * @type {boolean}
-	 */
-	let updatedValue;
-
-	const unsubscribe = updated.subscribe((value) => {
-		updatedValue = value;
-	});
-
-	onMount(() => {
-		const interval = setInterval(() => {
-			console.log('updatedValue:', updatedValue);
-		}, 10000);
-
-		return () => {
-			clearInterval(interval);
-			unsubscribe();
-		};
-	});
-
-	setContext('version', '2.9.5');
+	setContext('version', '2.9.6');
 </script>
 
 <div class="app">

@@ -1,14 +1,38 @@
 <script>
 	import { page } from '$app/stores';
 	import github from '$lib/images/github.svg';
-	import { getContext } from 'svelte';
+	import { getContext, onMount } from 'svelte';
+	import { version } from '$app/environment';
+	import { updated } from '$app/stores';
 
-	const version = getContext('version');
+	/**
+	 * @type {boolean}
+	 */
+	let updatedValue;
+
+	const unsubscribe = updated.subscribe((value) => {
+		updatedValue = value;
+	});
+
+	onMount(() => {
+		const interval = setInterval(() => {
+			console.log('updatedValue:', updatedValue);
+		}, 10000);
+
+		return () => {
+			clearInterval(interval);
+			unsubscribe();
+		};
+	});
+
+	const clientVersion = getContext('version');
 </script>
 
 <header>
-	<div class="corner">
-		<span>ver.{version}</span>
+	<div class="">
+		<div>ver.{clientVersion}</div>
+		<div style="font-size: 0.8em">{version}</div>
+		<span style="font-size: 0.8em">Updated: {updatedValue.toString()}</span>
 	</div>
 
 	<nav>
