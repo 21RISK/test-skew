@@ -1,15 +1,16 @@
 <script>
 	import Header from './Header.svelte';
 	import '../app.css';
+	import { setContext } from 'svelte';
 
-	const version = '2.8';
+	setContext('version', '2.8');
 </script>
 
 <div class="app">
-	<Header {version} />
+	<Header />
 
 	<main>
-		<slot {version} />
+		<slot />
 	</main>
 
 	<footer>

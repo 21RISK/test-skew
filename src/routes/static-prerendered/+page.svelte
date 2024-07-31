@@ -4,7 +4,12 @@
 </svelte:head>
 
 <div class="text-column">
-	<h1>About page: with +page.ts</h1>
+	<h1>
+		static prerendered page
+
+		<br />
+		<b>+page.ts</b>
+	</h1>
 
 	<p>
 		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the

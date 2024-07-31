@@ -1,7 +1,5 @@
 <script>
 	import Counter from './Counter.svelte';
-
-	export let version;
 </script>
 
 <svelte:head>
@@ -10,39 +8,7 @@
 </svelte:head>
 
 <section>
-	<h1>Home page: with +page.server.ts and +page.ts</h1>
-	<form method="POST">
-		<!-- <div>
-			<label>
-				Fisrt Name*
-				<input name="name" type="text" />
-			</label>
-		</div>
-		<hr />
-		<div>
-			<label>
-				Second Name*
-				<input name="surname" type="text" />
-			</label>
-		</div>
-		<hr /> -->
-		<div>
-			<label>
-				Email*
-				<input name="email" type="text" />
-			</label>
-		</div>
-		<hr />
-		<div>
-			<label>
-				Age*:
-				<input name="age" type="number" />
-			</label>
-		</div>
-		<hr />
-		<input type="hidden" name="version" value={version} />
-		<button type="submit">Submit</button>
-	</form>
+	<h1><b>+page.ts</b></h1>
 
 	<Counter />
 </section>

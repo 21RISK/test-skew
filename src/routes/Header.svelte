@@ -1,8 +1,9 @@
 <script>
 	import { page } from '$app/stores';
 	import github from '$lib/images/github.svg';
+	import { getContext } from 'svelte';
 
-	export let version;
+	const version = getContext('version');
 </script>
 
 <header>
@@ -16,13 +17,19 @@
 		</svg>
 		<ul>
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home (prerender = false)</a>
+				<a href="/">Home</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About (prerender = true)</a>
+			<li aria-current={$page.url.pathname === '/static-prerendered' ? 'page' : undefined}>
+				<a href="/static-prerendered">static prerendered page</a>
 			</li>
-			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Sverdle</a>
+			<li aria-current={$page.url.pathname.startsWith('/server') ? 'page' : undefined}>
+				<a href="/server">+page.server.ts</a>
+			</li>
+			<li aria-current={$page.url.pathname.startsWith('/how-to-play') ? 'page' : undefined}>
+				<a href="/how-to-play">+page.ts</a>
+			</li>
+			<li aria-current={$page.url.pathname.startsWith('/form-actions') ? 'page' : undefined}>
+				<a href="/form-actions">form-actions</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">

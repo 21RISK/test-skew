@@ -1,9 +1,14 @@
 import type { Actions } from './$types';
 
-const serverVersion = '2.8';
+const serverVersion = '2.9';
 
-export const actions: Actions = {
-	default: async ({ request }) => {
+export const actions = {
+	/**
+	 * Modify game state in reaction to a keypress. If client-side JavaScript
+	 * is available, this will happen in the browser instead of here
+	 */
+
+	submit: async ({ request }) => {
 		const formData = await request.formData();
 		// const name = formData.get('name');
 		const version = formData.get('version');
@@ -22,4 +27,4 @@ export const actions: Actions = {
 			success: `Submitted: (App version: ${version})`
 		};
 	}
-};
+} satisfies Actions;

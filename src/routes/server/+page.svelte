@@ -86,11 +86,11 @@
 <svelte:window on:keydown={keydown} />
 
 <svelte:head>
-	<title>Sverdle</title>
+	<title>+page.server.ts</title>
 	<meta name="description" content="A Wordle clone written in SvelteKit" />
 </svelte:head>
 
-<h1>Sverdle page: with +page.server.ts load fn</h1>
+<h1><b>+page.server.ts</b></h1>
 
 <form
 	method="POST"
@@ -196,6 +196,10 @@
 {/if}
 
 <style>
+	.flex {
+		display: flex;
+		gap: 1rem;
+	}
 	form {
 		width: 100%;
 		height: 100%;
