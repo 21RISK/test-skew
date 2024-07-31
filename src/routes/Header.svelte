@@ -22,11 +22,11 @@
 			<li aria-current={$page.url.pathname === '/static-prerendered' ? 'page' : undefined}>
 				<a href="/static-prerendered">static prerendered page</a>
 			</li>
-			<li aria-current={$page.url.pathname.startsWith('/server') ? 'page' : undefined}>
-				<a href="/server">+page.server.ts</a>
+			<li aria-current={$page.url.pathname.startsWith('/page-server-ts') ? 'page' : undefined}>
+				<a href="/page-server-ts">+page.server.ts</a>
 			</li>
-			<li aria-current={$page.url.pathname.startsWith('/how-to-play') ? 'page' : undefined}>
-				<a href="/how-to-play">+page.ts</a>
+			<li aria-current={$page.url.pathname.startsWith('/page-ts') ? 'page' : undefined}>
+				<a href="/page-ts">+page.ts</a>
 			</li>
 			<li aria-current={$page.url.pathname.startsWith('/form-actions') ? 'page' : undefined}>
 				<a href="/form-actions">form-actions</a>
