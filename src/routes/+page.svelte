@@ -1,7 +1,5 @@
 <script>
 	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
 
 	export let version;
 </script>
@@ -12,14 +10,7 @@
 </svelte:head>
 
 <section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-	</h1>
+	<h1>Home page: with +page.server.ts and +page.ts</h1>
 	<form method="POST">
 		<!-- <div>
 			<label>

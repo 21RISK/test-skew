@@ -2,7 +2,7 @@
 	import Header from './Header.svelte';
 	import '../app.css';
 
-	const version = '2.7';
+	const version = '2.8';
 </script>
 
 <div class="app">

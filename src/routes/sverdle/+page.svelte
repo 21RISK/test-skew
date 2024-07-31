@@ -58,9 +58,7 @@
 	 * if client-side JavaScript is enabled
 	 */
 	function update(event: MouseEvent) {
-		const key = (event.target as HTMLButtonElement).getAttribute(
-			'data-key'
-		);
+		const key = (event.target as HTMLButtonElement).getAttribute('data-key');
 
 		if (key === 'backspace') {
 			currentGuess = currentGuess.slice(0, -1);
@@ -92,7 +90,7 @@
 	<meta name="description" content="A Wordle clone written in SvelteKit" />
 </svelte:head>
 
-<h1 class="visually-hidden">Sverdle</h1>
+<h1>Sverdle page: with +page.server.ts load fn</h1>
 
 <form
 	method="POST"

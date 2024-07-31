@@ -1,6 +1,6 @@
 import type { Actions } from './$types';
 
-const serverVersion = '2.7';
+const serverVersion = '2.8';
 
 export const actions: Actions = {
 	default: async ({ request }) => {
