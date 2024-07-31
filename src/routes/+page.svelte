@@ -3,7 +3,7 @@
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 
-	const version = '2.6';
+	export let version;
 </script>
 
 <svelte:head>
@@ -19,8 +19,6 @@
 				<img src={welcome_fallback} alt="Welcome" />
 			</picture>
 		</span>
-
-		Version: {version}
 	</h1>
 	<form method="POST">
 		<!-- <div>

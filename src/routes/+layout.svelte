@@ -1,13 +1,15 @@
 <script>
 	import Header from './Header.svelte';
 	import '../app.css';
+
+	const version = '2.7';
 </script>
 
 <div class="app">
-	<Header />
+	<Header {version} />
 
 	<main>
-		<slot />
+		<slot {version} />
 	</main>
 
 	<footer>
