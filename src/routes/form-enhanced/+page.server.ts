@@ -1,6 +1,6 @@
 import type { Actions } from './$types';
 
-const serverVersion = '2.9.6';
+const serverVersion = '2.9.7';
 
 export const actions = {
 	/**
