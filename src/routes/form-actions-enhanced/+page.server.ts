@@ -17,7 +17,7 @@ export const actions = {
 		const age = formData.get('age');
 
 		console.log(`server version: ${serverVersion}`);
-		console.log(formData);
+		console.log(`enhanced: ${formData}`);
 
 		if (!email && !age) {
 			throw new Error('fields are required!');

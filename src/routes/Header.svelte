@@ -31,6 +31,11 @@
 			<li aria-current={$page.url.pathname.startsWith('/form-actions') ? 'page' : undefined}>
 				<a href="/form-actions">form-actions</a>
 			</li>
+			<li
+				aria-current={$page.url.pathname.startsWith('/form-actions-enhanced') ? 'page' : undefined}
+			>
+				<a href="/form-actions-enhanced">form-actions-enhanced</a>
+			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
 			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
