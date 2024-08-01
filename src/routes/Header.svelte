@@ -14,8 +14,9 @@
 	const buildDate = new Date(__BUILD_DATE__).toLocaleString();
 	const enableRedirection = writable(false);
 
-	$: beforeNavigate(({ willUnload, to }) => {
+	beforeNavigate(({ willUnload, to }) => {
 		// Only execute if redirection is enabled
+		console.log({ willUnload, to, $enableRedirection, $updated });
 		if ($enableRedirection && $updated && !willUnload && to?.url) {
 			location.href = to.url.href;
 		}
