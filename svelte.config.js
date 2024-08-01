@@ -1,6 +1,5 @@
 import vercel from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-// import { VERSION } from './src/lib/version';
 import { VERSION } from './src/lib/version.js';
 
 /** @type {import('@sveltejs/kit').Config} */
