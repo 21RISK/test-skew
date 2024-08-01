@@ -1,7 +1,7 @@
 import type { Actions } from './$types';
-import { VERSION } from '$lib/version';
+import { version } from '$app/environment';
 
-const serverVersion = VERSION;
+const serverVersion = version;
 
 interface CustomLocals extends App.Locals {
 	isExpiredDeployment?: boolean;

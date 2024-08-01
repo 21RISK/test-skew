@@ -5,11 +5,9 @@
 	import { updated } from '$app/stores';
 	import { writable } from 'svelte/store';
 	import { beforeNavigate } from '$app/navigation';
-	import { VERSION } from '$lib/version';
 
 	$: console.log($updated);
 
-	const clientVersion = VERSION;
 	// @ts-ignore
 	const buildDate = new Date(__BUILD_DATE__).toLocaleString();
 	const enableRedirection = writable(false);
@@ -24,9 +22,8 @@
 </script>
 
 <header>
-	<div class="">
-		<div>ver.{clientVersion}</div>
-		<div style="font-size: 0.8em">{version}</div>
+	<div>
+		<div>ver. {version}</div>
 		<span style="font-size: 0.8em">Updated: {$updated.toString()}</span>
 		<div style="font-size: 0.8em">Build Date: {buildDate}</div>
 		<label>
