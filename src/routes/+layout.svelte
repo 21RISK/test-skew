@@ -3,7 +3,7 @@
 	import '../app.css';
 	import { setContext } from 'svelte';
 
-	setContext('version', '2.9.10');
+	setContext('version', '2.9.11');
 </script>
 
 <div class="app">
