@@ -1,16 +1,17 @@
 <script>
 	import { page } from '$app/stores';
 	import github from '$lib/images/github.svg';
-	import { getContext } from 'svelte';
 	import { version } from '$app/environment';
 	import { updated } from '$app/stores';
 	import { writable } from 'svelte/store';
 	import { beforeNavigate } from '$app/navigation';
+	import { VERSION } from '$lib/version';
 
 	$: console.log($updated);
 
-	const clientVersion = getContext('version');
-
+	const clientVersion = VERSION;
+	// @ts-ignore
+	const buildDate = new Date(__BUILD_DATE__).toLocaleString();
 	const enableRedirection = writable(false);
 
 	$: beforeNavigate(({ willUnload, to }) => {
@@ -26,7 +27,7 @@
 		<div>ver.{clientVersion}</div>
 		<div style="font-size: 0.8em">{version}</div>
 		<span style="font-size: 0.8em">Updated: {$updated.toString()}</span>
-
+		<div style="font-size: 0.8em">Build Date: {buildDate}</div>
 		<label>
 			<input type="checkbox" bind:checked={$enableRedirection} />
 			Enable Redirection

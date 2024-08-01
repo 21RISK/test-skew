@@ -1,6 +1,11 @@
 import type { Actions } from './$types';
+import { VERSION } from '$lib/version';
 
-const serverVersion = '2.9.13';
+const serverVersion = VERSION;
+
+interface CustomLocals extends App.Locals {
+	isExpiredDeployment?: boolean;
+}
 
 export const actions = {
 	/**
@@ -8,7 +13,7 @@ export const actions = {
 	 * is available, this will happen in the browser instead of here
 	 */
 
-	submit: async ({ request, locals }) => {
+	submit: async ({ request, locals }: { request: Request; locals: App.Locals & CustomLocals }) => {
 		const formData = await request.formData();
 		// const name = formData.get('name');
 		const version = formData.get('version');

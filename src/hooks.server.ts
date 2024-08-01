@@ -1,7 +1,12 @@
+interface CustomLocals extends App.Locals {
+	isExpiredDeployment?: boolean;
+}
+
 export async function handle({ event, resolve }) {
 	const currentDeploymentId = process.env.VERCEL_DEPLOYMENT_ID;
 
 	const cookies = event.request.headers.get('cookie');
+	const locals: App.Locals & CustomLocals = event.locals;
 	let deploymentId;
 
 	if (cookies) {
@@ -11,9 +16,9 @@ export async function handle({ event, resolve }) {
 		}
 	}
 
-	const isExpiredDeployment = deploymentId && deploymentId !== currentDeploymentId;
+	const isExpiredDeployment = deploymentId && deploymentId !== currentDeploymentId ? true : false;
 
-	event.locals.isExpiredDeployment = isExpiredDeployment;
+	locals.isExpiredDeployment = isExpiredDeployment;
 
 	return resolve(event);
 }

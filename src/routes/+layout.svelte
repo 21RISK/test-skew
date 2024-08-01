@@ -1,9 +1,6 @@
 <script>
 	import Header from './Header.svelte';
 	import '../app.css';
-	import { setContext } from 'svelte';
-
-	setContext('version', '2.9.13');
 </script>
 
 <div class="app">
