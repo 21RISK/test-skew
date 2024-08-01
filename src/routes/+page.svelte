@@ -1,5 +1,13 @@
 <script>
 	import Counter from './Counter.svelte';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+
+	function changeQueryParam() {
+		const url = new URL($page.url);
+		url.searchParams.set('testParam', 'true');
+		goto(url.toString());
+	}
 </script>
 
 <svelte:head>
@@ -10,6 +18,10 @@
 <section>
 	<h1><b>+page.ts</b></h1>
 
+	<button on:click={changeQueryParam}> Set Query Param </button>
+
+	<!-- Display the current query parameters -->
+	<p>Current Query Param: {$page.url.searchParams.get('testParam')}</p>
 	<Counter />
 </section>
 
