@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
 	import github from '$lib/images/github.svg';
 	import { version } from '$app/environment';
@@ -6,21 +6,11 @@
 	import { writable } from 'svelte/store';
 	import { beforeNavigate } from '$app/navigation';
 	import { onDestroy, onMount } from 'svelte';
+	import { buildStatus } from '$lib/stores/build-status-store';
 
-	// @ts-ignore
-	const buildDate = new Date(__BUILD_DATE__);
+	let isExpired: boolean;
+	$: isExpired = $buildStatus;
 	const enableRedirection = writable(false);
-	// const expireInMs = 12 * 60 * 60 * 1000; // 12 hours
-	const expireInMs = 1000; // small number to test
-	const intervalInMs = 30 * 1000; // 30 seconds
-	$: isExpired = false;
-	let checkInterval = 0;
-
-	function checkIfExpired() {
-		const currentDate = new Date();
-		console.log({ currentDate, buildDate, $updated });
-		isExpired = $updated && currentDate.getTime() - buildDate.getTime() > expireInMs;
-	}
 
 	beforeNavigate(({ willUnload, to }) => {
 		// Only execute if redirection is enabled
@@ -29,13 +19,16 @@
 		}
 	});
 
+	let stopChecking: () => void;
+
 	onMount(() => {
-		// Check if expired on client
-		checkIfExpired();
-		checkInterval = setInterval(checkIfExpired, intervalInMs);
+		stopChecking = buildStatus.startChecking($updated);
 	});
+
 	onDestroy(() => {
-		clearInterval(checkInterval);
+		if (stopChecking) {
+			stopChecking();
+		}
 	});
 </script>
 
@@ -43,10 +36,6 @@
 	<div>
 		<div>ver. <b>{version}</b></div>
 		<span style="font-size: 0.8em">Updated: <b>{$updated.toString()}</b></span>
-		<div style="font-size: 0.8em">
-			Build Date:
-			<div style="max-width: 280px;"><b>{buildDate}</b></div>
-		</div>
 		<div style="font-size: 0.8em">
 			Is Expired:
 			{#key isExpired}
