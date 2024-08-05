@@ -5,27 +5,52 @@
 	import { updated } from '$app/stores';
 	import { writable } from 'svelte/store';
 	import { beforeNavigate } from '$app/navigation';
-
-	$: console.log($updated);
+	import { onDestroy, onMount } from 'svelte';
 
 	// @ts-ignore
-	const buildDate = new Date(__BUILD_DATE__).toLocaleString();
+	const buildDate = new Date(__BUILD_DATE__);
 	const enableRedirection = writable(false);
+	// const expireInMs = 12 * 60 * 60 * 1000; // 12 hours
+	const expireInMs = 1000; // small number to test
+	const intervalInMs = 30 * 1000; // 30 seconds
+	let isExpired = false;
+	let checkInterval = 0;
+
+	function checkIfExpired() {
+		const currentDate = new Date();
+		console.log({ currentDate, buildDate, $updated });
+		isExpired = $updated && currentDate.getTime() - buildDate.getTime() > expireInMs;
+	}
 
 	beforeNavigate(({ willUnload, to }) => {
 		// Only execute if redirection is enabled
-		console.log({ willUnload, to, $enableRedirection, $updated });
 		if ($enableRedirection && $updated && !willUnload && to?.url) {
 			location.href = to.url.href;
 		}
+	});
+
+	onMount(() => {
+		// Check if expired on client
+		checkIfExpired();
+		checkInterval = setInterval(checkIfExpired, intervalInMs);
+	});
+	onDestroy(() => {
+		clearInterval(checkInterval);
 	});
 </script>
 
 <header>
 	<div>
-		<div>ver. {version}</div>
-		<span style="font-size: 0.8em">Updated: {$updated.toString()}</span>
-		<div style="font-size: 0.8em">Build Date: {buildDate}</div>
+		<div>ver. <b>{version}</b></div>
+		<span style="font-size: 0.8em">Updated: <b>{$updated.toString()}</b></span>
+		<div style="font-size: 0.8em">
+			Build Date:
+			<div style="max-width: 280px;"><b>{buildDate}</b></div>
+		</div>
+		<div style="font-size: 0.8em">
+			Is Expired:
+			<b style={isExpired ? 'color: red' : 'color: green'}>{isExpired}</b>
+		</div>
 		<label>
 			<input type="checkbox" bind:checked={$enableRedirection} />
 			Enable Redirection
