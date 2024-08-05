@@ -13,7 +13,7 @@
 	// const expireInMs = 12 * 60 * 60 * 1000; // 12 hours
 	const expireInMs = 1000; // small number to test
 	const intervalInMs = 30 * 1000; // 30 seconds
-	let isExpired = false;
+	$: isExpired = false;
 	let checkInterval = 0;
 
 	function checkIfExpired() {
@@ -49,7 +49,9 @@
 		</div>
 		<div style="font-size: 0.8em">
 			Is Expired:
-			<b style={isExpired ? 'color: red' : 'color: green'}>{isExpired}</b>
+			{#key isExpired}
+				<b style={isExpired ? 'color: red' : 'color: green'}>{isExpired}</b>
+			{/key}
 		</div>
 		<label>
 			<input type="checkbox" bind:checked={$enableRedirection} />
