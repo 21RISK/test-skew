@@ -5,13 +5,9 @@
 	import { updated } from '$app/stores';
 	import { writable } from 'svelte/store';
 	import { beforeNavigate } from '$app/navigation';
-	import { onDestroy, onMount } from 'svelte';
-	import { buildStatus } from '$lib/stores/build-status-store';
+	import { onMount } from 'svelte';
+	import { isExpired } from '$lib/stores/build-status-store';
 
-	let isExpired: boolean;
-	// Automatically subscribe to buildStatus store
-	$: isExpired = $buildStatus;
-	let stopChecking: () => void;
 	const enableRedirection = writable(false);
 
 	beforeNavigate(({ willUnload, to }) => {
@@ -22,13 +18,7 @@
 	});
 
 	onMount(() => {
-		stopChecking = buildStatus.startChecking($updated);
-	});
-
-	onDestroy(() => {
-		if (stopChecking) {
-			stopChecking();
-		}
+		isExpired.startChecking(); // Start checking build status
 	});
 </script>
 
@@ -38,8 +28,8 @@
 		<span style="font-size: 0.8em">Updated: <b>{$updated.toString()}</b></span>
 		<div style="font-size: 0.8em">
 			Is Expired:
-			{#key isExpired}
-				<b style={isExpired ? 'color: red' : 'color: green'}>{isExpired}</b>
+			{#key $isExpired}
+				<b style={$isExpired ? 'color: red' : 'color: green'}>{$isExpired.toString()}</b>
 			{/key}
 		</div>
 		<label>

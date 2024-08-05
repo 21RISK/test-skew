@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store';
+import { updated } from '$app/stores';
 
 const buildDate = new Date(__BUILD_DATE__);
 const expireInMs = 12 * 60 * 60 * 1000; // 12 hours
@@ -9,6 +10,7 @@ function createBuildStatusStore() {
 
 	function checkIfExpired(isUpdated: boolean) {
 		const currentDate = new Date();
+		console.log({ isUpdated, currentDate, buildDate });
 		// Check if build is expired
 		if (isUpdated && currentDate.getTime() - buildDate.getTime() > expireInMs) {
 			set(true);
@@ -17,14 +19,13 @@ function createBuildStatusStore() {
 		}
 	}
 
-	function startChecking(isUpdated: boolean) {
-		checkIfExpired(isUpdated); // check init
+	function startChecking() {
+		updated.subscribe((isUpdated) => {
+			checkIfExpired(isUpdated); // Initial check
+			const interval = setInterval(() => checkIfExpired(isUpdated), checkInterval); // Set interval for checking
 
-		// Set interval for checking
-		const interval = setInterval(() => checkIfExpired(isUpdated), checkInterval);
-
-		// Return a function to clear the interval
-		return () => clearInterval(interval);
+			return () => clearInterval(interval); // Clear the interval when unsubscribed
+		});
 	}
 
 	return {
@@ -33,4 +34,4 @@ function createBuildStatusStore() {
 	};
 }
 
-export const buildStatus = createBuildStatusStore();
+export const isExpired = createBuildStatusStore();
