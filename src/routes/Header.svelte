@@ -9,7 +9,9 @@
 	import { buildStatus } from '$lib/stores/build-status-store';
 
 	let isExpired: boolean;
+	// Automatically subscribe to buildStatus store
 	$: isExpired = $buildStatus;
+	let stopChecking: () => void;
 	const enableRedirection = writable(false);
 
 	beforeNavigate(({ willUnload, to }) => {
@@ -18,8 +20,6 @@
 			location.href = to.url.href;
 		}
 	});
-
-	let stopChecking: () => void;
 
 	onMount(() => {
 		stopChecking = buildStatus.startChecking($updated);

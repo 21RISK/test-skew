@@ -7,6 +7,6 @@ export default defineConfig({
 		include: ['src/**/*.{test,spec}.{js,ts}']
 	},
 	define: {
-		__BUILD_DATE__: JSON.stringify(new Date().toISOString())
+		__BUILD_DATE__: JSON.stringify(new Date().toISOString()) // Define a global variable for build date
 	}
 });
