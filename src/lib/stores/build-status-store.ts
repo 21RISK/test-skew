@@ -13,10 +13,8 @@ function createBuildStatusStore() {
 		const currentDate = new Date();
 		console.log({ isUpdated, currentDate, buildDate });
 		// Check if build is expired
-		if (isUpdated && currentDate.getTime() - buildDate.getTime() > expireInMs) {
-			set(true);
-		} else {
-			set(false);
+		if (isUpdated) {
+			set(currentDate.getTime() - buildDate.getTime() > expireInMs);
 		}
 	}
 

@@ -28,9 +28,7 @@
 		<span style="font-size: 0.8em">Updated: <b>{$updated.toString()}</b></span>
 		<div style="font-size: 0.8em">
 			Is Expired:
-			{#key $isExpired}
-				<b style={$isExpired ? 'color: red' : 'color: green'}>{$isExpired.toString()}</b>
-			{/key}
+			<b style={$isExpired ? 'color: red' : 'color: green'}>{$isExpired.toString()}</b>
 		</div>
 		<label>
 			<input type="checkbox" bind:checked={$enableRedirection} />
