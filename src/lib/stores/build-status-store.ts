@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 import { updated } from '$app/stores';
 
 const buildDate = new Date(__BUILD_DATE__);
-const expireInMs = 1000; // to test
+const expireInMs = 1000 * 60 * 60 * 12; // 12 hours in ms
 // const expireInMs = 12 * 60 * 60 * 1000; // 12 hours
 const checkInterval = 30 * 1000; // 30 seconds
 
